@@ -1,10 +1,9 @@
 package com.apiproject.service;
 
-import com.apiproject.data.Client;
+import com.apiproject.data.model.Client;
 import com.apiproject.data.payloads.ClientRequest;
 import com.apiproject.data.payloads.MessageResponse;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.util.List;

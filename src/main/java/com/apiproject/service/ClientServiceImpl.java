@@ -1,15 +1,13 @@
 package com.apiproject.service;
 
 import com.apiproject.Utils.Utils;
-import com.apiproject.data.Client;
+import com.apiproject.data.model.Client;
 import com.apiproject.data.payloads.ClientRequest;
 import com.apiproject.data.payloads.MessageResponse;
 import com.apiproject.data.repository.ClientRepository;
 import com.apiproject.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
@@ -17,11 +15,10 @@ import java.util.Optional;
 @Service
 public class ClientServiceImpl implements ClientService {
 
-    public ClientRepository clientRepository;
-
+    @Autowired
+    ClientRepository clientRepository;
     @Override
     public MessageResponse createClient(ClientRequest clientRequest) throws ParseException {
-        System.out.println(clientRequest);
         Client newClient = new Client();
         newClient.setNom(clientRequest.getNom());
         newClient.setPrénom(clientRequest.getPrénom());

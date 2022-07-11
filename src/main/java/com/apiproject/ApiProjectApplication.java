@@ -2,10 +2,9 @@ package com.apiproject;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
-@SpringBootApplication(exclude={DataSourceAutoConfiguration.class})
-public class ApiProjectApplication {
+@SpringBootApplication
+public class ApiProjectApplication extends ServletInitializer {
 
     public static void main(String[] args) {
         SpringApplication.run(ApiProjectApplication.class, args);

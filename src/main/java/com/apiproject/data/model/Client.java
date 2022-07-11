@@ -1,9 +1,10 @@
-package com.apiproject.data;
+package com.apiproject.data.model;
 
-import java.util.Date;
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.Objects;
 
+@Entity
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -1,6 +1,6 @@
 package com.apiproject.web;
 
-import com.apiproject.data.Client;
+import com.apiproject.data.model.Client;
 import com.apiproject.data.payloads.ClientRequest;
 import com.apiproject.data.payloads.MessageResponse;
 import com.apiproject.service.ClientService;
@@ -15,9 +15,8 @@ import java.text.ParseException;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
-@RequestMapping("/client")
-//Line 19 to 24 is the newly added code for swagger documentation
+//@RestController
+@RequestMapping("/clients")
 @ApiResponses(value = {
         @io.swagger.annotations.ApiResponse(code = 400, message = "This is a bad request, please follow the API documentation for the proper request format"),
         @io.swagger.annotations.ApiResponse(code = 401, message = "Due to security constraints, your access request cannot be authorized"),
@@ -27,30 +26,32 @@ import java.util.Optional;
 @Controller
 public class ClientController {
 
+    @Autowired
     ClientService clientService;
 
-    @GetMapping("/all")
+    @GetMapping()
     public ResponseEntity<List<Client>> getAllClients () {
+
         List<Client> clients = clientService.getAllClients();
         return new ResponseEntity<>(clients, HttpStatus.OK);
     }
-    @GetMapping("/find/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Client> getClientById (@PathVariable("id") Integer id) {
         Client client = clientService.getASingleClient(id);
         return new ResponseEntity<>(client, HttpStatus.OK);
     }
-    @PostMapping("/add")
+    @PostMapping("")
     public ResponseEntity<MessageResponse> addClient(@RequestBody ClientRequest client) throws ParseException {
         MessageResponse newClient = clientService.createClient(client);
         return new ResponseEntity<>(newClient, HttpStatus.CREATED);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public Optional<Client> updateClient(@PathVariable Integer id, @RequestBody ClientRequest client) throws ParseException {
         return clientService.updateClient(id, client);
 
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteClient(@PathVariable("id") Integer id) {
         clientService.deleteClient(id);
         return new ResponseEntity<>(HttpStatus.OK);

@@ -3,7 +3,7 @@ package com.apiproject.Utils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 
 public class Utils {
@@ -21,14 +21,16 @@ public class Utils {
     }
 
     /**
-     * converts a date (String) to a date (java.util.Date)
+     * converts a date (String) to a date (java.sql.Date)
      * @param dateString
      * @return Date
      * @throws ParseException
      */
     public static Date convertStringToDate(String dateString) throws ParseException {
-        DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-        return format.parse(dateString);
+        DateFormat iFormatter = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat oFormatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDateFormatted = oFormatter.format(iFormatter.parse(dateString));
+        return Date.valueOf(strDateFormatted);
     }
 
     /**

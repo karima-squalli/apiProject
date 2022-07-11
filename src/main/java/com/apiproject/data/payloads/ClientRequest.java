@@ -1,7 +1,5 @@
 package com.apiproject.data.payloads;
 
-import java.util.Date;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 public class ClientRequest {
